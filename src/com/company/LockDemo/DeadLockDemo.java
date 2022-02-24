@@ -1,4 +1,4 @@
-package com.company.DeadLockDemo;
+package com.company.LockDemo;
 
 public class DeadLockDemo {
     private static Object resource1 = new Object();
@@ -41,6 +41,20 @@ public class DeadLockDemo {
                 }
             }
         };
+
+        /*ThreadFactory threadFactory = new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return null;
+            }
+        };
+
+        ExecutorService executorService = new ThreadPoolExecutor(2,10,
+                500, TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<>(1024),threadFactory,new ThreadPoolExecutor.AbortPolicy());
+
+        executorService.execute(rA);
+        executorService.execute(rB);*/
 
         Thread tA = new Thread(rA);
         tA.setName("thread-A");
